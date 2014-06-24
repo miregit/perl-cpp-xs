@@ -35,7 +35,7 @@ public:
         return newRV((SV *)results);
     }
     
-    // returns array ref of x strings s_ 
+    // returns array ref of x numbers n_ 
     SV * get_ar_x_n (size_t x) {
         AV * results = (AV *)sv_2mortal((SV *)newAV());
         for (size_t i=0; i < x; i++) {
