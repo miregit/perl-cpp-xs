@@ -38,7 +38,7 @@ public:
     // returns array ref of x numbers n_ 
     SV * get_ar_x_n (size_t x) {
         AV * results = (AV *)sv_2mortal((SV *)newAV());
-        av_extend(results, x);
+        av_extend(results, x - 1);
         for (size_t i=0; i < x; i++) {
             SV *rh = newSViv( n_ );
             av_push(results, rh);
@@ -57,7 +57,7 @@ public:
     // returns an array ref of hash references of the private class data
     SV * get_x_ar_hr_data(size_t x) {
         AV * results = (AV *)sv_2mortal((SV *)newAV());
-        av_extend(results, x);
+        av_extend(results, x - 1);
         for (size_t i=0; i < x; i++) {
             av_push(results, get_hr_data());
         }
