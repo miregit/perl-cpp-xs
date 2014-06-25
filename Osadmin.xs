@@ -45,6 +45,13 @@ public:
         return newRV((SV *)results);
     }
 
+    SV * get_hr_data() {
+        HV * rh = (HV *)sv_2mortal((SV *)newHV());
+        hv_store(rh, "s", 1, newSVpv(s_.c_str(),0), 0);
+        hv_store(rh, "n", 1, newSViv(n_),  0);
+        return newRV((SV *) rh);
+    }
+
     int get_n() {
         return n_;
     }
@@ -75,6 +82,9 @@ Osadmin::get_ar_x_s(size_t x)
 
 SV *
 Osadmin::get_ar_x_n(size_t x)
+
+SV *
+Osadmin::get_hr_data()
 
 void
 Osadmin::DESTROY()
