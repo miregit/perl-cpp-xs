@@ -6,7 +6,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More tests => 9;
 
 BEGIN { use_ok('Osadmin') };
 
@@ -26,4 +26,5 @@ is_deeply ([$osa->get_a_x_n(2)], [-5, -5], 'test array with numbers via stack');
 is_deeply ($osa->get_hr_data(), {'s' => 'proba', 'n' => -5}, 'test hash ref with data');
 
 
+is_deeply ($osa->get_x_ar_hr_data(2), [{'s' => 'proba', 'n' => -5}, {'s' => 'proba', 'n' => -5}], 'test array reference with 2 hash references of data');
 

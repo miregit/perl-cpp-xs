@@ -45,11 +45,21 @@ public:
         return newRV((SV *)results);
     }
 
+    // returns a hash reference of the private class data
     SV * get_hr_data() {
         HV * rh = (HV *)sv_2mortal((SV *)newHV());
         hv_store(rh, "s", 1, newSVpv(s_.c_str(),0), 0);
         hv_store(rh, "n", 1, newSViv(n_),  0);
         return newRV((SV *) rh);
+    }
+
+    // returns an array ref of hash references of the private class data
+    SV * get_x_ar_hr_data(size_t x) {
+        AV * results = (AV *)sv_2mortal((SV *)newAV());
+        for (size_t i=0; i < x; i++) {
+            av_push(results, get_hr_data());
+        }
+        return newRV((SV *)results);
     }
 
     int get_n() {
@@ -85,6 +95,9 @@ Osadmin::get_ar_x_n(size_t x)
 
 SV *
 Osadmin::get_hr_data()
+
+SV * 
+Osadmin::get_x_ar_hr_data(size_t x)
 
 void
 Osadmin::DESTROY()
